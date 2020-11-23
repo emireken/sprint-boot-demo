@@ -4,3 +4,5 @@ app:
     username: postgres
     password: 1234
     poll-size: 30
+    baselineOnMigrate: true
+    validateOnMigrate: false
