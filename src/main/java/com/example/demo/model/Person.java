@@ -3,10 +3,12 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 public class Person {
 
+    @NotNull
     private final UUID id;
 
     @NotBlank
@@ -26,4 +28,13 @@ public class Person {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name +
+                '}';
+    }
+
 }
