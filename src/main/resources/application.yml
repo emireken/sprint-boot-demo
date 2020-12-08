@@ -1,8 +1,7 @@
 app:
   datasource:
-    jdbc-url: jdbc:postgreslq://localhost:5432/demodb
+    jdbc-url: jdbc:postgresql://0.0.0.0:5432/demodb
     username: postgres
-    password: 1234
+    password: 12345
     poll-size: 30
-    baselineOnMigrate: true
-    validateOnMigrate: false
+    platform : postgresql
