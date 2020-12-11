@@ -19,7 +19,7 @@ public interface CountryDao {
 
     Optional<Country> selectCountryById(UUID id);
 
-    int deleteCountriesById(UUID id);
-    int updateCountriesById(UUID id, Country country);
+    int deleteCountryById(UUID id);
+    int updateCountryById(UUID id, Country country);
 
 }

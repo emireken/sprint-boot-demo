@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository("postgres")
+@Repository
 public class CountryDataAccessService implements CountryDao {
 
     @Autowired
@@ -37,25 +37,28 @@ public class CountryDataAccessService implements CountryDao {
         String sql = "" +
                 "INSERT INTO country (" +
                 " id, " +
-                " name )" +
-                "VALUES (?, ?)";
+                " name, " +
+                " capital )" +
+                "VALUES (?, ?, ?)";
         return jdbcTemplate.update(
                 sql,
                 id,
-                country.getName()
+                country.getName(),
+                country.getCapital()
         );
     }
 
     @Override
     public Optional<Country> selectCountryById(UUID id) {
-        final String sql = "SELECT id, name FROM country WHERE id = ?";
+        final String sql = "SELECT id, name, capital FROM country WHERE id = ?";
         Country country = getJdbcTemplate().queryForObject(
                 sql,
                 new Object[]{id},
                 (resultSet, i) -> {
                     UUID countryId = UUID.fromString(resultSet.getString("id"));
                     String name = resultSet.getString("name");
-                    return new Country(countryId, name);
+                    String capital = resultSet.getString("capital");
+                    return new Country(id,name,capital);
                 });
         return Optional.ofNullable(country);
     }
@@ -66,7 +69,8 @@ public class CountryDataAccessService implements CountryDao {
 
     @Override
     public int deleteCountryById(UUID id) {
-        return 0;
+        final String sql = "DELETE FROM country WHERE id = ?";
+        return jdbcTemplate.update(sql);
     }
 
     @Override
@@ -79,10 +83,9 @@ public class CountryDataAccessService implements CountryDao {
         return (resultSet, i) -> {
             String idStr = resultSet.getString("id");
             UUID id = UUID.fromString(idStr);
-
             String name = resultSet.getString("name");
-
-            return new Country(id,name);
+            String capital = resultSet.getString("capital");
+            return new Country(id,name,capital);
         };
     }
 }

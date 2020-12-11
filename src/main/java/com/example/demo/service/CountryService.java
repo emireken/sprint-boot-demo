@@ -20,15 +20,13 @@ public class CountryService {
         this.countryDataAccessService = countryDataAccessService1;
     }
 
-    public List<Country> getAllPeople(){
+    public List<Country> getAllCountries(){
         return countryDataAccessService.selectAllCountries();
     }
-
 
     public int addCountry(Country country) {
         return countryDataAccessService.insertCountry(country);
     }
-
 
     public Optional<Country> getCountryById (UUID id) {
         return countryDataAccessService.selectCountryById(id);
