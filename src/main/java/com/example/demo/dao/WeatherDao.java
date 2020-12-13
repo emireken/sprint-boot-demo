@@ -15,6 +15,7 @@ public interface WeatherDao {
     }
 
     List<Weather> selectAllWeathers();
+
     Optional<Weather> selectWeatherById(Integer id);
 
     int deleteWeatherById(Integer id);

@@ -12,12 +12,11 @@ public class Weather {
     @NotNull
     private final Integer id;
 
-    @NotBlank
-    private final Integer visibility;
+    private final String visibility;
 
 
     public Weather(@JsonProperty("id") Integer id,
-                   @JsonProperty("visibility") Integer visibility) {
+                   @JsonProperty("visibility") String visibility) {
 
         this.id = id;
         this.visibility = visibility;
@@ -26,15 +25,16 @@ public class Weather {
         public Integer getId() {
             return id;
         }
-        public Integer getVisibility() {
+        public String getVisibility() {
             return visibility;
         }
+
 
     @Override
     public String toString() {
         return "Weather{" +
                 "id=" + id +
-                "visibility" + visibility +
+                ", visibility='" + visibility +
                 '}';
     }
 }

@@ -59,11 +59,12 @@ public class WeatherDataAccessService implements WeatherDao {
                 new Object[]{id},
                 (resultSet, i) -> {
                     Integer weatherId = resultSet.getInt("id");
-                    Integer visibility = resultSet.getInt("visibility");
+                    String visibility = resultSet.getString("visibility");
                     return new Weather(weatherId,visibility);
                 });
         return Optional.ofNullable(weather);
     }
+
 
     private JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;
@@ -72,7 +73,7 @@ public class WeatherDataAccessService implements WeatherDao {
     private RowMapper<Weather> mapWeatherFomDb() {
         return (resultSet, i) -> {
             Integer id = resultSet.getInt("id");
-            Integer visibility = resultSet.getInt("visibility");
+            String visibility = resultSet.getString("visibility");
             return new Weather(id, visibility);
         };
     }

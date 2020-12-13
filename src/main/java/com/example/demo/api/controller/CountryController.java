@@ -60,6 +60,7 @@ public class CountryController {
     public List<Country> addCountryToDb(@PathVariable("name") String name, final Model model){
         List<Country> countries =  (List<Country>) parsingService.parse(JSON_COUNTRY_URL+"name/"+ name );
         model.addAttribute("country", countries.get(0));
+
         List<Country> accountList = mapper.convertValue(
                 countries,
                 new TypeReference<List<Country>>(){}
