@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Country {
 
     @NotNull
-    private final UUID id;
+    private final Integer id;
 
     @NotBlank
     private final String name;
@@ -20,7 +20,7 @@ public class Country {
     private final String capital;
 
 
-    public Country(@JsonProperty("id") UUID id,
+    public Country(@JsonProperty("id") Integer id,
                    @JsonProperty("name") String name,
                     @JsonProperty("capital") String capital){
 
@@ -29,7 +29,7 @@ public class Country {
         this.capital = capital;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -4,22 +4,21 @@ import com.example.demo.model.Country;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface CountryDao {
 
-    int insertCountry(UUID id, Country country);
+    int insertCountry(Integer id, Country country);
 
     default int insertCountry(Country country){
-        UUID id = UUID.randomUUID();
+        Integer id = 0;
         return  insertCountry(id, country);
     }
 
     List<Country> selectAllCountries();
 
-    Optional<Country> selectCountryById(UUID id);
+    Optional<Country> selectCountryById(Integer id);
 
-    int deleteCountryById(UUID id);
-    int updateCountryById(UUID id, Country country);
+    int deleteCountryById(Integer id);
+    int updateCountryById(Integer id, Country country);
 
 }

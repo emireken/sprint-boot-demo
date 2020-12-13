@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
 public class CountryDataAccessService implements CountryDao {
@@ -33,13 +32,8 @@ public class CountryDataAccessService implements CountryDao {
     }
 
     @Override
-    public int insertCountry(UUID id, Country country) {
-        String sql = "" +
-                "INSERT INTO country (" +
-                " id, " +
-                " name, " +
-                " capital )" +
-                "VALUES (?, ?, ?)";
+    public int insertCountry(Integer id, Country country) {
+        String sql = "INSERT INTO country (id,  name, capital ) VALUES ( (SELECT count(*) id FROM country)+?, ?, ?)";
         return jdbcTemplate.update(
                 sql,
                 id,
@@ -49,13 +43,13 @@ public class CountryDataAccessService implements CountryDao {
     }
 
     @Override
-    public Optional<Country> selectCountryById(UUID id) {
-        final String sql = "SELECT id, name, capital FROM country WHERE id = ?";
+    public Optional<Country> selectCountryById(Integer id) {
+        String sql = "SELECT id, name, capital FROM country WHERE id = ?";
         Country country = getJdbcTemplate().queryForObject(
                 sql,
                 new Object[]{id},
                 (resultSet, i) -> {
-                    UUID countryId = UUID.fromString(resultSet.getString("id"));
+                    Integer countryId = resultSet.getInt("id");
                     String name = resultSet.getString("name");
                     String capital = resultSet.getString("capital");
                     return new Country(id,name,capital);
@@ -68,21 +62,20 @@ public class CountryDataAccessService implements CountryDao {
     }
 
     @Override
-    public int deleteCountryById(UUID id) {
+    public int deleteCountryById(Integer id) {
         final String sql = "DELETE FROM country WHERE id = ?";
         return jdbcTemplate.update(sql);
     }
 
     @Override
-    public int updateCountryById(UUID id, Country country) {
+    public int updateCountryById(Integer id, Country country) {
         return 0;
     }
 
 
     private RowMapper<Country> mapCountryFomDb() {
         return (resultSet, i) -> {
-            String idStr = resultSet.getString("id");
-            UUID id = UUID.fromString(idStr);
+            Integer id = resultSet.getInt("id");
             String name = resultSet.getString("name");
             String capital = resultSet.getString("capital");
             return new Country(id,name,capital);

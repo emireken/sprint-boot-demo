@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class CountryService {
@@ -28,15 +27,15 @@ public class CountryService {
         return countryDataAccessService.insertCountry(country);
     }
 
-    public Optional<Country> getCountryById (UUID id) {
+    public Optional<Country> getCountryById (Integer id) {
         return countryDataAccessService.selectCountryById(id);
     }
 
-    public int deleteCountry(UUID id) {
+    public int deleteCountry(Integer id) {
         return countryDataAccessService.deleteCountryById(id);
     }
 
-    public int updateCountry(UUID id, Country newCountry) {
+    public int updateCountry(Integer id, Country newCountry) {
         return countryDataAccessService.updateCountryById(id, newCountry);
     }
 
