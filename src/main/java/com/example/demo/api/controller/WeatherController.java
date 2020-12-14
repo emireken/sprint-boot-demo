@@ -4,14 +4,8 @@ import com.example.demo.model.Weather;
 import com.example.demo.service.WeatherService;
 import com.example.demo.service.JsonParsingService;
 import com.example.demo.service.ParsingService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.google.common.base.Splitter;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import org.apache.tomcat.jni.Library;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1/weather")
@@ -57,6 +49,11 @@ public class WeatherController {
     public void addWeather(@Valid @NotNull @NotBlank @RequestBody Weather weather) {
         weatherService.addWeather(weather);
     }
+    @GetMapping (path ="{id}")
+    public Optional<Weather> getWeatherById(@PathVariable("id") Integer id){
+        return weatherService.getWeatherById(id);
+    }
+
 
     @RequestMapping(path = "/lat&lon", method = RequestMethod.GET)
     public Object getWeatherByLatLon(@RequestParam (value = "lat", required = true) Double lat,
@@ -65,27 +62,6 @@ public class WeatherController {
         return weathers ;
     }
 
-    /*
-    @RequestMapping(path = "/lat&lon", method = RequestMethod.POST)
-    public String  weatherByLatLonToDb(@RequestParam (value = "lat", required = true) Double lat,
-                                       @RequestParam (value = "lon", required = true) Double lon, final Model model){
-
-        String weathers = new String(String.valueOf(parsingService.parse(JSON_WEATHER_URL+ "&lat="+lat+"&lon="+lon)));
-        List<String> weathers1 = (List<String>)(Arrays.asList(weathers));
-        //List<Weather> weathers2 =  (List<Weather>) parsingService.parse(weathers);
-        //List<Weather> weathers =  (List<Weather>) parsingService.parse(JSON_WEATHER_URL+ "&lat="+lat+"&lon="+lon);
-        //List<String> weathers1 = (List<String>)(Arrays.asList(weathers));
-        //List<String> weathers1 = (List<String>) (LinkedHashMap(Arrays.asList(weathers)));
-        // List<Weather> weathers2 =  (List<Weather>) parsingService.parse(weathers);
-
-        model.addAttribute("weather", weathers);
-        List<Weather> weatherList = mapper.convertValue(weathers1, new TypeReference<List<Weather>>(){});
-        weatherService.addWeather(
-
-                weatherList.get(0));
-        return weathers;
-    }
-*/
 
     @DeleteMapping (path ="{id}")
     public void deleteWeatherById(@PathVariable("id") Integer id) {

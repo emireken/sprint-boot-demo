@@ -10,6 +10,10 @@ import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Weather implements Serializable {
+/*
+    public Weather(@JsonProperty("name") String name){
+        this.name = name;
+    };*/
 
     private String name;
 
