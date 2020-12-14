@@ -36,7 +36,7 @@ public class WeatherDataAccessService implements WeatherDao {
         return jdbcTemplate.update(
                 sql,
                 id,
-                weather.getVisibility()
+                weather
         );
     }
 
@@ -60,7 +60,7 @@ public class WeatherDataAccessService implements WeatherDao {
                 (resultSet, i) -> {
                     Integer weatherId = resultSet.getInt("id");
                     String visibility = resultSet.getString("visibility");
-                    return new Weather(weatherId,visibility);
+                    return new Weather();
                 });
         return Optional.ofNullable(weather);
     }
@@ -74,7 +74,7 @@ public class WeatherDataAccessService implements WeatherDao {
         return (resultSet, i) -> {
             Integer id = resultSet.getInt("id");
             String visibility = resultSet.getString("visibility");
-            return new Weather(id, visibility);
+            return new Weather();
         };
     }
 }
