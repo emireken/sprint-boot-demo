@@ -7,11 +7,8 @@ import java.util.Optional;
 
 public interface WeatherDao {
 
-    int insertWeather(Integer id, Weather weather);
-
     default int insertWeather(Weather weather){
-        Integer id = 0;
-        return  insertWeather(id, weather);
+        return  insertWeather(weather);
     }
 
     List<Weather> selectAllWeathers();

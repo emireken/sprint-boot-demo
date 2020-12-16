@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,18 +27,27 @@ public class WeatherDataAccessService implements WeatherDao {
     }
 
     @Override
-    public int insertWeather(Integer id, Weather weatherMain) {
-        String sql = "INSERT INTO weather (id,  weatherMain ) VALUES ( (SELECT count(*) id FROM weather)+?, ?)";
-        return jdbcTemplate.update(
-                sql,
-                id,
-                weatherMain
-        );
+    public int insertWeather(Weather Weather) {
+        String sql = "INSERT INTO " +
+                "weather (\"weatherId\", temperature, \"weatherMain\", \"weatherIcon\", \"weatherDescription\", \"countryCode\", name, \"timestamp\", \"sunrise\", \"sunset\") " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        return jdbcTemplate.update(sql,
+                new Object[] {
+                        Weather.getWeatherId(),
+                        Weather.getTemperature(),
+                        Weather.getWeatherMain(),
+                        Weather.getWeatherIcon(),
+                        Weather.getWeatherDescription(),
+                        Weather.getCountryCode(),
+                        Weather.getName(),
+                        Weather.getTimestamp(),
+                        Weather.getSunrise(),
+                        Weather.getSunset(),
+        });
     }
-
     @Override
     public int deleteWeatherById(Integer id) {
-        String sql = "DELETE FROM weather WHERE id =?";
+        String sql = "DELETE FROM weather WHERE \"weatherId\" =?";
         return jdbcTemplate.update(sql,id);
     }
 
@@ -50,30 +58,10 @@ public class WeatherDataAccessService implements WeatherDao {
 
     @Override
     public Optional<Weather> selectWeatherById(Integer id) {
-        String sql = "SELECT * FROM weather WHERE id = ?";
-        Weather weather = getJdbcTemplate().queryForObject(
-                sql,
-                new Object[]{id},
-                (resultSet, i) -> {
-                    Integer weatherId = resultSet.getInt("id");
-                    Integer temperature = resultSet.getInt("temperature");
-
-                    String weatherMain = resultSet.getString("weatherMain");
-                    String weatherIcon = resultSet.getString("weatherIcon");
-                    String weatherDescription = resultSet.getString("weatherDescription");
-                    String countryCode = resultSet.getString("countryCode");
-                    String name = resultSet.getString("name");
-
-                    Timestamp timestamp = resultSet.getTimestamp("timestamp");
-                    Timestamp sunrise = resultSet.getTimestamp("sunrise");
-                    Timestamp sunset = resultSet.getTimestamp("sunset");
-                    return new Weather();
-                });
+        String sql = "SELECT * FROM weather WHERE \"weatherId\" = ?";
+        Weather weather = getJdbcTemplate().queryForObject(sql, new Object[]{id}, mapWeatherFomDb());
         return Optional.ofNullable(weather);
-
-        //return jdbcTemplate.query(sql, mapWeatherFomDb());
     }
-
 
     private JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;
@@ -81,20 +69,18 @@ public class WeatherDataAccessService implements WeatherDao {
 
     private RowMapper<Weather> mapWeatherFomDb() {
         return (resultSet, i) -> {
-            Integer weatherId = resultSet.getInt("id");
+            Integer weatherId = resultSet.getInt("weatherId");
             Integer temperature = resultSet.getInt("temperature");
-
             String weatherMain = resultSet.getString("weatherMain");
             String weatherIcon = resultSet.getString("weatherIcon");
             String weatherDescription = resultSet.getString("weatherDescription");
             String countryCode = resultSet.getString("countryCode");
             String name = resultSet.getString("name");
+            Long timestamp = resultSet.getLong("timestamp");
+            Long sunrise = resultSet.getLong("sunrise");
+            Long sunset = resultSet.getLong("sunset");
 
-            Timestamp timestamp = resultSet.getTimestamp("timestamp");
-            Timestamp sunrise = resultSet.getTimestamp("sunrise");
-            Timestamp sunset = resultSet.getTimestamp("sunset");
-
-            return new Weather();
+            return new Weather(weatherId, temperature, weatherMain, weatherIcon, weatherDescription, countryCode, name, timestamp, sunrise, sunset );
         };
     }
 }

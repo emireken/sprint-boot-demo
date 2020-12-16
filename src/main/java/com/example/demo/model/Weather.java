@@ -4,16 +4,36 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Weather implements Serializable {
-/*
-    public Weather(@JsonProperty("name") String name){
+
+    public Weather(
+                   @JsonProperty("weatherId") Integer weatherId,
+                   @JsonProperty("temperature") Integer temperature,
+                   @JsonProperty("weatherMain") String weatherMain,
+                   @JsonProperty("weatherIcon") String weatherIcon,
+                   @JsonProperty("weatherDescription") String weatherDescription,
+                   @JsonProperty("countryCode") String countryCode,
+                   @JsonProperty("name") String name,
+                   @JsonProperty("timestamp") Long timestamp,
+                   @JsonProperty("sunrise") Long sunrise,
+                   @JsonProperty("sunset") Long sunset){
+        this.weatherId = weatherId;
+        this.temperature = temperature;
+        this.weatherMain = weatherMain;
+        this.weatherIcon = weatherIcon;
+        this.weatherDescription = weatherDescription;
+        this.countryCode = countryCode;
         this.name = name;
-    };*/
+        this.timestamp = timestamp;
+        this.sunrise = sunrise;
+        this.sunset = sunset;
+    };
 
     private String name;
 
@@ -23,12 +43,16 @@ public class Weather implements Serializable {
 
     private Integer weatherId;
 
+    @Column(name = "weatherIcon", nullable = false)
     private String weatherIcon;
 
+    @Column(name = "weatherMain", nullable = false)
     private String weatherMain;
 
+    @Column(name = "weatherDescription", nullable = false)
     private String weatherDescription;
 
+    @Column(name = "countryCode", nullable = false)
     private String countryCode;
 
     private long sunrise;

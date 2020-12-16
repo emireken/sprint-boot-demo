@@ -49,22 +49,21 @@ public class WeatherController {
     public void addWeather(@Valid @NotNull @NotBlank @RequestBody Weather weather) {
         weatherService.addWeather(weather);
     }
+
     @GetMapping (path ="{id}")
     public Optional<Weather> getWeatherById(@PathVariable("id") Integer id){
         return weatherService.getWeatherById(id);
     }
 
+    @DeleteMapping (path ="{id}")
+    public void deleteWeatherById(@PathVariable("id") Integer id) {
+        weatherService.deleteWeather(id);
+    }
 
     @RequestMapping(path = "/lat&lon", method = RequestMethod.GET)
     public Object getWeatherByLatLon(@RequestParam (value = "lat", required = true) Double lat,
                                      @RequestParam (value = "lon", required = true) Double lon, final Model model){
         final Object weathers = parsingService.parse(JSON_WEATHER_URL + "&lat="+lat+"&lon="+lon);
         return weathers ;
-    }
-
-
-    @DeleteMapping (path ="{id}")
-    public void deleteWeatherById(@PathVariable("id") Integer id) {
-        weatherService.deleteWeather(id);
     }
 }
