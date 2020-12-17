@@ -22,9 +22,15 @@ public class Country {
         this.name = name;
     }
 
+<<<<<<< Updated upstream
     public String getCapital() {
         return capital;
     }
+=======
+    public Country(@JsonProperty("id") Integer id,
+                   @JsonProperty("name") String name,
+                   @JsonProperty("capital") String capital){
+>>>>>>> Stashed changes
 
     public void setCapital(String capital) {
         this.capital = capital;
