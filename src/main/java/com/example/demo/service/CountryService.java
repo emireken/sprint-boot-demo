@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.api.domain.LatLng;
 import com.example.demo.dao.CountryDataAccessService;
 import com.example.demo.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class CountryService {
         return countryDataAccessService.selectAllCountries();
     }
 
-    public int addCountry(Country country) {
-        return countryDataAccessService.insertCountry(country);
+    public int addCountry(Country country, LatLng latlng) {
+        return countryDataAccessService.insertCountry(country, latlng);
     }
 
     public Optional<Country> getCountryById (Integer id) {

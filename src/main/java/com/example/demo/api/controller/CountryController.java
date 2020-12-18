@@ -1,5 +1,6 @@
 package com.example.demo.api.controller;
 
+import com.example.demo.api.domain.LatLng;
 import com.example.demo.model.Country;
 import com.example.demo.service.ParsingService;
 import com.example.demo.service.JsonParsingService;
@@ -52,22 +53,26 @@ public class CountryController {
     }
 
     @PostMapping
-    public void addCountry(@Valid @NotNull @RequestBody Country country) {
-        countryService.addCountry(country);
+    public void addCountry(@Valid @NotNull @RequestBody Country country, LatLng latlng) {
+        countryService.addCountry(country, latlng);
     }
 
     @PostMapping(path ="{name}")
     public List<Country> addCountryToDb(@PathVariable("name") String name, final Model model){
         List<Country> countries =  (List<Country>) parsingService.parse(JSON_COUNTRY_URL+"name/"+ name );
+        List<LatLng> latLan =  (List<LatLng>) parsingService.parse(JSON_COUNTRY_URL+"name/"+ name );
         model.addAttribute("country", countries.get(0));
 
         List<Country> accountList = mapper.convertValue(
                 countries,
                 new TypeReference<List<Country>>(){}
         );
-        countryService.addCountry(accountList.get(0));
+        List<LatLng> latLngList = mapper.convertValue(
+                latLan,
+                new TypeReference<List<LatLng>>(){}
+        );
+        countryService.addCountry(accountList.get(0),latLngList.get(0));
         return countries;
-
     }
 
     @DeleteMapping (path ="{id}")

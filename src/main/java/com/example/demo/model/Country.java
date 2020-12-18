@@ -1,10 +1,12 @@
 package com.example.demo.model;
 
+import com.example.demo.api.domain.LatLng;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -19,10 +21,12 @@ public class Country {
     @NotBlank
     private final String capital;
 
+    private List<LatLng> LatLng;
 
     public Country(@JsonProperty("id") Integer id,
                    @JsonProperty("name") String name,
-                    @JsonProperty("capital") String capital){
+                   @JsonProperty("capital") String capital
+                   ){
 
         this.id = id;
         this.name = name;
