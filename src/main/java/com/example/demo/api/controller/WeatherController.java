@@ -40,7 +40,7 @@ public class WeatherController {
     @GetMapping
     public Object getWeather() {
         //String weathers = new String(String.valueOf(parsingService.parse(JSON_WEATHER_URL + "&lat=41.04473&lon=29.0353")));
-        final Object weathers = parsingService.parse(JSON_WEATHER_URL + "&lat=41.04473&lon=29.0353");
+        final String weathers = parsingService.parseString(JSON_WEATHER_URL + "&lat=41.04473&lon=29.0353");
         return weathers ;
     }
 
