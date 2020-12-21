@@ -1,4 +1,5 @@
-FROM openjdk:11
-ADD target/docker-spring-boot.jar docker-spring-boot.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "docker-spring-boot.jar"]
+FROM openjdk:11-jdk-alpine
+VOLUME /tmp
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
