@@ -4,9 +4,6 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 # Maintainer of this dockerfile.
 MAINTAINER Emir Gokberk Eken (emirgokberk.eken@gmail.com)
 
-# Update os. java 11 image is based on debian
-RUN apt-get update
-
 # Copy built jar to image.
 COPY target/docker-spring-boot.jar /opt/app/docker-spring-boot.jar
 
