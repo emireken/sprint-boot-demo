@@ -1,14 +1,18 @@
 # Using oficial java 11 as base docker image.
-FROM openjdk:11
+FROM adoptopenjdk/openjdk11:alpine-jre
 
 # Maintainer of this dockerfile.
 MAINTAINER Emir Gokberk Eken (emirgokberk.eken@gmail.com)
 
-ADD target/docker-spring-boot.jar docker-spring-boot.jar
+# Update os. java 11 image is based on debian
+RUN apt-get update
 
+# Copy built jar to image.
+COPY target/docker-spring-boot.jar /opt/app/docker-spring-boot.jar
+
+WORKDIR /opt/app
+
+ARG JAR_FILE=/target/docker-spring-boot.jar
+COPY ${JAR_FILE} docker-spring-boot.jar
 EXPOSE 8080
-
-#ENTRYPOINT ["java","-jar","docker-spring-boot.jar"]
-
-# Start
-ENTRYPOINT ["java", "-jar", "docker-spring-boot.jar"]
+ENTRYPOINT ["java","-jar","docker-spring-boot.jar"]

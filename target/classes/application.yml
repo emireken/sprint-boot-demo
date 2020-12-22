@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: spring.profiles.active
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers : true
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/demodb
+    username: postgres
+    password: 12345
+    poll-size: 30
+    platform : postgresql
