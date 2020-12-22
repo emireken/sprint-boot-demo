@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/java/com/example/demo/api/exception/
+src/main/java/com/example/demo/api/handler/
+src/main/resources/static/
