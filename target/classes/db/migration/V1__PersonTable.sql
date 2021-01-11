@@ -4,16 +4,16 @@
 --);
 --
 ----
-CREATE TABLE weather (
-weatherId INT,
-temperature INT,
-weatherMain VARCHAR,
-weatherIcon VARCHAR,
-weatherDescription VARCHAR,
-countryCode VARCHAR,
-name NAME,
-timestamp INT,
-sunrise INT,
-sunset INT
-);
-
+--CREATE TABLE weather (
+--weatherId INT,
+--temperature INT,
+--weatherMain VARCHAR,
+--weatherIcon VARCHAR,
+--weatherDescription VARCHAR,
+--countryCode VARCHAR,
+--name NAME,
+--timestamp INT,
+--sunrise INT,
+--sunset INT
+--);
+--
