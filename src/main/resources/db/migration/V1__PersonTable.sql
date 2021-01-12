@@ -1,3 +1,5 @@
+--
+--
 --CREATE TABLE person (
 --    id UUID NOT NULL PRIMARY KEY,
 --    name VARCHAR(100)  NOT NULL
@@ -17,3 +19,4 @@
 --sunset INT
 --);
 --
+--DELETE FROM public.flyway_schema_history WHERE installed_rank = 1
