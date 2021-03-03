@@ -37,7 +37,7 @@ public class CountryController {
 
     ObjectMapper mapper = new ObjectMapper();
 
-    @GetMapping
+    @GetMapping(path ="all")
     public List<Country> main( final Model model){
         List<Country> countries =  (List<Country>) parsingService.parse(JSON_COUNTRY_URL+"all");
         model.addAttribute("country", countries.get(0));

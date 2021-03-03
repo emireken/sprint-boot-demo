@@ -1,4 +1,25 @@
 -------------------------------------------------------------------------------
 Test set: com.example.demo.DemoApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.655 s - in com.example.demo.DemoApplicationTests
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 16.509 s <<< FAILURE! - in com.example.demo.DemoApplicationTests
+contextLoads  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: 
+Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: 
+Unable to obtain connection from database: The connection attempt failed.
+-------------------------------------------------------------------------
+SQL State  : 08001
+Error Code : 0
+Message    : The connection attempt failed.
+
+Caused by: org.flywaydb.core.internal.exception.FlywaySqlException: 
+
+Unable to obtain connection from database: The connection attempt failed.
+-------------------------------------------------------------------------
+SQL State  : 08001
+Error Code : 0
+Message    : The connection attempt failed.
+
+Caused by: org.postgresql.util.PSQLException: The connection attempt failed.
+Caused by: java.net.SocketTimeoutException: connect timed out
+

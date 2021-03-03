@@ -7,7 +7,6 @@ com\example\demo\api\domain\LatLng.class
 com\example\demo\api\controller\CountryController.class
 com\example\demo\model\Country.class
 com\example\demo\WeatherAppProperties.class
-com\example\demo\dao\FakePersonDataAccessService.class
 com\example\demo\dao\CountryDao.class
 com\example\demo\service\PersonService.class
 com\example\demo\api\controller\WeatherController.class
