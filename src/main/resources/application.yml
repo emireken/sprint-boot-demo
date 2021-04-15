@@ -5,6 +5,7 @@ spring:
     properties:
       hibernate:
         globally_quoted_identifiers : true
+
 app:
   datasource:
     #jdbc-url: jdbc:postgresql://host.docker.internal:5432/demodb
@@ -13,3 +14,5 @@ app:
     password: 12345
     poll-size: 30
     platform : postgresql
+
+
