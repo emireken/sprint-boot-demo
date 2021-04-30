@@ -5,7 +5,21 @@ spring:
     properties:
       hibernate:
         globally_quoted_identifiers : true
-
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: t99pM9GBLKikSmE9A2FLg2iEJAuv2qSr
+            client-secret: vV1EpTslqNpmLVh135vrm7NIZYdG1LW7JRovki-yMwtXWa0SwkXoQHCxpE5X7nIu-
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          auth0:
+            # trailing slash is important!
+            issuer-uri: https://dev-bp2r03cu.us.auth0.com/
 app:
   datasource:
     #jdbc-url: jdbc:postgresql://host.docker.internal:5432/demodb
