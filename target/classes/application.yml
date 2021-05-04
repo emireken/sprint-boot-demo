@@ -11,7 +11,7 @@ spring:
         registration:
           auth0:
             client-id: t99pM9GBLKikSmE9A2FLg2iEJAuv2qSr
-            client-secret: vV1EpTslqNpmLVh135vrm7NIZYdG1LW7JRovki-yMwtXWa0SwkXoQHCxpE5X7nIu-
+            client-secret: vV1EpTslqNpmLVh135vrm7NIZYdG1LW7JRovki-yMwtXWa0SwkXoQHCxpE5X7nIu
             scope:
               - openid
               - profile
