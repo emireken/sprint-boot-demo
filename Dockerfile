@@ -13,3 +13,25 @@ ARG JAR_FILE=/target/docker-spring-boot.jar
 COPY ${JAR_FILE} docker-spring-boot.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","docker-spring-boot.jar"]
+
+## pull official base image
+#FROM node:alpine
+#
+## set working directory
+#WORKDIR /app
+#
+## add `/app/node_modules/.bin` to $PATH
+##ENV PATH /app/node_modules/.bin:$PATH
+#
+## install app dependencies
+#COPY package.json ./
+#COPY package-lock.json ./
+#RUN npm install --silent
+#RUN npm install react-scripts -g --silent
+#
+## add app
+#COPY . ./
+#
+## start app
+#EXPOSE 8080
+#CMD ["npm", "start"]
