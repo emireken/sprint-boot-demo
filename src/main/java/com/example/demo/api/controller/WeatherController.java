@@ -78,7 +78,7 @@ public class WeatherController {
             System.out.println(s);
         }
         List<Weather> weatherP = (List<Weather>) parsingService.parse(weathersS);
-*//*        new Object[] {
+*//*       new Object[] {
                 Weather.getWeatherId(),
                 Weather.getTemperature(),
                 Weather.getWeatherMain(),
@@ -89,7 +89,7 @@ public class WeatherController {
                 Weather.getTimestamp(),
                 Weather.getSunrise(),
                 Weather.getSunset(),
-        }*//*
+        }
         return null;
     }
 
