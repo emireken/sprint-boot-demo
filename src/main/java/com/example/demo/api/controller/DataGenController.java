@@ -7,6 +7,7 @@ package com.example.demo.api.controller;
 
 import com.example.demo.model.DataGen;
 import com.example.demo.model.Name;
+import com.example.demo.model.ResultGen;
 import com.example.demo.service.JsonParsingService;
 import com.example.demo.service.NameService;
 import com.example.demo.service.NumberService;
@@ -43,7 +44,6 @@ public class DataGenController {
         List newNumberList = new ArrayList();
         ArrayList ResultName = new ArrayList();
         ArrayList ResultNumber = new ArrayList();
-        ArrayList Result = new ArrayList();
 
         int i;
         for(i = 0; i < DataList.size(); ++i) {
@@ -54,9 +54,9 @@ public class DataGenController {
             }
         }
 
-        i = Math.max(newNameList.size(), newNumberList.size());
+        int Size = Math.max(newNameList.size(), newNumberList.size());
 
-        for( i = 0; i < i; ++i) {
+        for( i = 0; i < Size; ++i) {
             if (newNameList.size() > 0) {
                 ResultName.add(i, newNameList.get(i));
             }
@@ -66,8 +66,18 @@ public class DataGenController {
             }
         }
 
-        Result.add(ResultName);
-        Result.add(ResultNumber);
-        return Result;
+        ResultGen Result = new ResultGen(ResultName, ResultNumber);
+        return Result.toString();
+
+//        int Size = Math.max(newNameList.size(), newNumberList.size());
+//
+//        for( i = 0; i < Size; ++i) {
+//            if (newNameList.size() > 0) {
+//                Result.add(i, newNameList.get(i));
+//            }
+//            if (newNumberList.size() > 0) {
+//                Result.add(i,newNumberList.get(i));
+//            }
+//        }
     }
 }
