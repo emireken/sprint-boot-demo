@@ -24,9 +24,9 @@ public class NameController {
     @GetMapping(
             path = {"random"}
     )
-    public Name getRandomName() {
-        return NameService.getRandomName();
-    }
+//    public Name getRandomName() {
+//        return NameService.getRandomName();
+//    }
 
     @RequestMapping(
             value = {"num"},
@@ -36,19 +36,19 @@ public class NameController {
         return (ArrayList)NameService.getNumberOfRandomName(numberOfRandom);
     }
 
-    @RequestMapping(
-            value = {"locale"},
-            method = {RequestMethod.GET}
-    )
-    public Name getRandomNameByLocale(@RequestParam("locale") String locale) {
-        return NameService.getRandomNameByLocale(locale);
-    }
-
-    @RequestMapping(
-            value = {"locNum"},
-            method = {RequestMethod.GET}
-    )
-    public ArrayList<Name> getNumberOfRandomNameByLocale(@RequestParam("localenumberOfRandom") String locale, Integer numberOfRandom) {
-        return (ArrayList)NameService.getNumberOfRandomNameByLocale(locale, numberOfRandom);
-    }
+//    @RequestMapping(
+//            value = {"locale"},
+//            method = {RequestMethod.GET}
+//    )
+//    public Name getRandomNameByLocale(@RequestParam("locale") String locale) {
+//        return NameService.getRandomNameByLocale(locale);
+//    }
+//
+//    @RequestMapping(
+//            value = {"locNum"},
+//            method = {RequestMethod.GET}
+//    )
+//    public ArrayList<Name> getNumberOfRandomNameByLocale(@RequestParam("localenumberOfRandom") String locale, Integer numberOfRandom) {
+//        return (ArrayList)NameService.getNumberOfRandomNameByLocale(locale, numberOfRandom);
+//    }
 }

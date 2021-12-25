@@ -5,6 +5,7 @@
 
 package com.example.demo.api.controller;
 
+import ch.qos.logback.core.util.COWArrayList;
 import com.example.demo.model.DataGen;
 import com.example.demo.model.Name;
 import com.example.demo.model.ResultGen;
@@ -24,11 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping({"api/v1/dataGen"})
 public class DataGenController {
-    private static final String JSON_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?units=metric&lang=en&appid=e5def15cc837a57ebd4e07827b3e8912&lat=41.04473&lon=29.0353";
-    @Autowired
-    private ParsingService parsingService;
-    @Autowired
-    private JsonParsingService jsonParsingService;
 
     public DataGenController() {
     }
@@ -38,46 +34,30 @@ public class DataGenController {
     )
     public Object getGenData(@RequestBody String genData) {
         Gson g = new Gson();
-        DataGen s = (DataGen)g.fromJson(genData, DataGen.class);
-        ArrayList DataList = (ArrayList)s.getDataList();
-        List<Name> newNameList = new ArrayList();
-        List newNumberList = new ArrayList();
-        ArrayList ResultName = new ArrayList();
-        ArrayList ResultNumber = new ArrayList();
+        DataGen s = g.fromJson(genData, DataGen.class);
+        ArrayList DataList = (ArrayList) s.getDataList();
+        ArrayList ResultJSON = new ArrayList();
+        ArrayList ResultTempJSON = new ArrayList();
 
-        int i;
-        for(i = 0; i < DataList.size(); ++i) {
-            if (DataList.get(i).equals("Name")) {
-                newNameList.addAll(NameService.getNumberOfRandomName(s.getDataSize()));
-            } else if (DataList.get(i).equals("Number")) {
-                newNumberList.addAll(NumberService.getNumberOfRandomNumber(s.getDataSize()));
+        for (int i = 0; i < s.getDataSize(); ++i) {
+            ResultTempJSON = new ArrayList();
+            for (int j = 0; j < DataList.size(); ++j) {
+                if (DataList.get(j).equals("Name")) {
+                    ResultTempJSON.add(j, (NameService.getRandomName()));
+                } else if (DataList.get(j).equals("Number")) {
+                    ResultTempJSON.add(j, (NumberService.getRandomNumber()));
+                }
             }
+            ResultJSON.add(i, ResultTempJSON);
         }
-
-        int Size = Math.max(newNameList.size(), newNumberList.size());
-
-        for( i = 0; i < Size; ++i) {
-            if (newNameList.size() > 0) {
-                ResultName.add(i, newNameList.get(i));
-            }
-
-            if (newNumberList.size() > 0) {
-                ResultNumber.add(i, newNumberList.get(i));
-            }
-        }
-
-        ResultGen Result = new ResultGen(ResultName, ResultNumber);
-        return Result.toString();
-
-//        int Size = Math.max(newNameList.size(), newNumberList.size());
-//
-//        for( i = 0; i < Size; ++i) {
-//            if (newNameList.size() > 0) {
-//                Result.add(i, newNameList.get(i));
-//            }
-//            if (newNumberList.size() > 0) {
-//                Result.add(i,newNumberList.get(i));
-//            }
-//        }
+        return ResultJSON;
     }
 }
+
+//        for(i = 0; i < DataList.size(); ++i) {
+//        if (DataList.get(i).equals("Name")) {
+//                newNameList.addAll(NameService.getNumberOfRandomName(s.getDataSize()));
+//        } else if (DataList.get(i).equals("Number")) {
+//                newNumberList.add(NumberService.getNumberOfRandomNumber(s.getDataSize()));
+//        }
+//        }

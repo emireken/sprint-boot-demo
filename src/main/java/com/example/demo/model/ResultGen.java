@@ -31,6 +31,6 @@ public class ResultGen {
     }
 
     public String toString() {
-        return "ResultGen{name=" + this.name + ", number='" + this.number + '}';
+        return "[{name=" + this.name + ", number='" + this.number + "}]";
     }
 }

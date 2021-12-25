@@ -20,6 +20,13 @@ public class NumberService {
         return randomPercent;
     }
 
+    public static int getRandomNumber() {
+
+            int randomNumber = (int)(Math.random() * 100.0D);
+
+        return randomNumber;
+    }
+
     public static ArrayList getNumberOfRandomNumber(Integer numberOfRandom) {
         ArrayList randomNumberList = new ArrayList();
 
