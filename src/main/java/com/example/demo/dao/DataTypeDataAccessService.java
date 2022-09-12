@@ -37,7 +37,8 @@ public class DataTypeDataAccessService implements DataTypeDao {
             String data_type_name = resultSet.getString("data_type_name");
             String data_type = resultSet.getString("data_type");
             String data_unit = resultSet.getString("data_unit");
-            return new DataType(id, data_type_name, data_type, data_unit);
+            String data_options = resultSet.getString("data_options");
+            return new DataType(id, data_type_name, data_type, data_unit, data_options);
         };
     }
 }

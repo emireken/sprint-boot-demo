@@ -22,12 +22,16 @@ public class DataType {
     public final String data_type;
     @NotBlank
     public final String data_unit;
+    @NotBlank
+    public final String data_options;
 
-    public DataType(@JsonProperty("id") Integer id, @JsonProperty("data_type_name") String data_type_name, @JsonProperty("data_type") String data_type, @JsonProperty("data_unit") String data_unit) {
+
+    public DataType(@JsonProperty("id") Integer id, @JsonProperty("data_type_name") String data_type_name, @JsonProperty("data_type") String data_type, @JsonProperty("data_unit") String data_unit,@JsonProperty("data_options") String data_options) {
         this.id = id;
         this.data_type_name = data_type_name;
         this.data_type = data_type;
         this.data_unit = data_unit;
+        this.data_options = data_options;
     }
 
     public Integer getId() {

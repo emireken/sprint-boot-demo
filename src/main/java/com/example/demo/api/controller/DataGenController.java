@@ -7,6 +7,7 @@ package com.example.demo.api.controller;
 
 import ch.qos.logback.core.util.COWArrayList;
 import com.example.demo.model.DataGen;
+import com.example.demo.model.DataOption;
 import com.example.demo.model.Name;
 import com.example.demo.model.ResultGen;
 import com.example.demo.service.JsonParsingService;
@@ -16,6 +17,8 @@ import com.example.demo.service.ParsingService;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +39,8 @@ public class DataGenController {
         Gson g = new Gson();
         DataGen s = g.fromJson(genData, DataGen.class);
         ArrayList DataList = (ArrayList) s.getDataList();
+        String  DataOption = (String) s.getOptionList();
+        String OptionInputList = (String) s.getOptionInputList();
         ArrayList ResultJSON = new ArrayList();
         ArrayList ResultTempJSON = new ArrayList();
 
@@ -43,13 +48,19 @@ public class DataGenController {
             ResultTempJSON = new ArrayList();
             for (int j = 0; j < DataList.size(); ++j) {
                 if (DataList.get(j).equals("Name")) {
-                    ResultTempJSON.add(j, (NameService.getRandomName()));
+                    if (DataOption.equals("Locale")) {
+                        ResultTempJSON.add(j, (NameService.getRandomNamebyLocale(OptionInputList)));
+                    }
+                    else {
+                        ResultTempJSON.add(j, (NameService.getRandomName()));
+                    }
                 } else if (DataList.get(j).equals("Number")) {
                     ResultTempJSON.add(j, (NumberService.getRandomNumber()));
                 }
             }
             ResultJSON.add(i, ResultTempJSON);
         }
+
         return ResultJSON;
     }
 }

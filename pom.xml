@@ -44,10 +44,10 @@ http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<scope>runtime</scope>
 		</dependency>
 
-		<dependency>
+<!--		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

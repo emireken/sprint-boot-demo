@@ -35,6 +35,13 @@ public class NameService {
         return name;
     }
 
+    public static String getRandomNamebyLocale(Object OptionInput) {
+        List<FirstName> first = firstNameDataAccessService.getRandomFirstNameByLocale((String) OptionInput);
+        List<LastName> last = lastNameDataAccessService.getRandomLastNameByLocale((String) OptionInput);
+        String name = ((FirstName)first.get(0)).first_name +" "+ ((LastName)last.get(0)).last_name;
+        return name;
+    }
+
     public static List<Name> getNumberOfRandomName(Integer numberOfRandom) {
         List<FirstName> first = firstNameDataAccessService.getNumberOfRandomFirstName(numberOfRandom);
         List<LastName> last = lastNameDataAccessService.getNumberOfRandomLastName(numberOfRandom);

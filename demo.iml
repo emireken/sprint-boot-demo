@@ -85,7 +85,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.2.10.RELEASE" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.postgresql:postgresql:42.2.18" level="project" />
     <orderEntry type="library" name="Maven: org.checkerframework:checker-qual:3.5.0" level="project" />
-    <orderEntry type="library" name="Maven: org.flywaydb:flyway-core:6.0.8" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.5" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.10.5" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.5" level="project" />
@@ -155,7 +154,7 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-oauth2-client:5.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.nimbusds:oauth2-oidc-sdk:6.14" level="project" />
     <orderEntry type="library" name="Maven: com.github.stephenc.jcip:jcip-annotations:1.0-1" level="project" />
-    <orderEntry type="library" name="Maven: com.nimbusds:lang-tag:1.5" level="project" />
+    <orderEntry type="library" name="Maven: com.nimbusds:lang-tag:1.7" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-oauth2-core:5.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-oauth2-jose:5.2.7.RELEASE" level="project" />
